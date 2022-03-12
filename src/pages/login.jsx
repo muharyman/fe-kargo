@@ -5,19 +5,20 @@ import RadioForm from "../components/RadioForm";
 import AppContext from "../context/AppContext";
 
 export default function Login() {
-  const { setAuth } = useContext(AppContext);
-  const [user, setUser] = useState("");
+  const { setAuth, setUser } = useContext(AppContext);
+  const [account, setAccount] = useState("");
   const [location, setLocation] = useLocation();
 
   const handleLogin = useCallback(
     (user) => {
       if (user.length !== 0) {
         if (user == "Transporter") {
-          setLocation("/transporter");
+          setLocation("/transporter/trucks");
         } else {
-          setLocation("/shipper");
+          setLocation("/shipper/shippment");
         }
         setAuth(true);
+        setUser(user);
         localStorage.setItem("kargo-token", user);
       }
     },
@@ -34,13 +35,13 @@ export default function Login() {
           <RadioForm
             label="Role"
             values={["Transporter", "Shipper"]}
-            setUser={setUser}
+            setUser={setAccount}
           />
         </div>
 
         <div className="mt-12">
           <button
-            onClick={() => handleLogin(user)}
+            onClick={() => handleLogin(account)}
             className="bg-blue-800 min-w-[10rem] focus:outline-none hover:bg-opacity-80 px-5 py-3 rounded-lg text-center text-white text-lg font-semibold"
           >
             LOGIN
