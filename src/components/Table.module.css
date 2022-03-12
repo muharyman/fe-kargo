@@ -1,0 +1,19 @@
+.header img {
+  visibility: hidden;
+}
+.header:hover img {
+  visibility: visible;
+}
+.parentTable {
+  min-height: 30rem;
+}
+.parentEmpty {
+  height: calc(100% - 4rem);
+}
+.desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow-y: hidden;
+}

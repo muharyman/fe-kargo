@@ -5,19 +5,20 @@ import { useLocation } from "wouter";
 import driver from "../assets/driver.svg";
 import truck from "../assets/trucks.svg";
 import menuicon from "../assets/menuicon.svg";
+import shipping from "../assets/shipping.svg";
 
 export default function Navbar() {
   const { isSideOpen, setIsSideOpen, setAuth, user, setUser } =
     useContext(AppContext);
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const [open, setOpen] = useState(false);
 
   const listLink = useMemo(
     () => [
       {
         value: "Shippment",
-        href: "/shipper/shippment",
-        img: "#",
+        href: "/shipper/shipments",
+        img: shipping,
       },
       {
         value: "Trucks",
@@ -75,6 +76,7 @@ export default function Navbar() {
                 localStorage.removeItem("kargo-token");
                 setAuth(false);
                 setUser("");
+                setLocation("/login");
               }}
               className="py-2 px-3 hover:bg-gray-200 rounded-md focus:outline-none flex justify-center items-center"
             >

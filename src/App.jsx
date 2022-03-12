@@ -11,8 +11,11 @@ import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
 
 import ProtectRouteTransporter from "./components/withPrivateRouteTransporter";
+import ProtectRouteShipper from "./components/withPrivateRouteShipper";
 
 import Trucks from "./pages/truck/index";
+import Drivers from "./pages/driver/index";
+import Shipments from "./pages/shipment/index";
 
 function App() {
   const [location, setLocation] = useLocation();
@@ -45,13 +48,13 @@ function App() {
         {!location.includes("/login") ? <Sidebar /> : null}
         <div
           className={`${
-            location === "/login"
+            location.includes("/login")
               ? "w-screen"
               : isSideOpen
               ? "w-5/6"
               : "w-[90%]"
           } transition-all ${
-            location === "/login" ? "duration-0" : "duration-300"
+            location.includes("/login") ? "duration-0" : "duration-300"
           } ease-in h-screen overflow-auto bg-gray-100`}
         >
           {!location.includes("/login") ? <Navbar /> : null}
@@ -62,6 +65,14 @@ function App() {
             <ProtectRouteTransporter
               Component={Trucks}
               path={"/transporter/trucks"}
+            />
+            <ProtectRouteTransporter
+              Component={Drivers}
+              path={"/transporter/drivers"}
+            />
+            <ProtectRouteShipper
+              Component={Shipments}
+              path={"/shipper/shipments"}
             />
           </Switch>
         </div>

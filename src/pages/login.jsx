@@ -15,7 +15,7 @@ export default function Login() {
         if (user == "Transporter") {
           setLocation("/transporter/trucks");
         } else {
-          setLocation("/shipper/shippment");
+          setLocation("/shipper/shipments");
         }
         setAuth(true);
         setUser(user);

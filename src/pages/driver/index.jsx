@@ -1,10 +1,10 @@
 import React, { useState, useMemo, useCallback } from "react";
-import { useLocation } from "wouter";
-
-import Table from "../../components/Table";
 
 import editIcon from "../../assets/edit.svg";
 import deleteIcon from "../../assets/delete.svg";
+import { useLocation } from "wouter";
+import Table from "../../components/Table";
+
 import viewIcon from "../../assets/viewId.svg";
 
 export default function Truck() {
@@ -17,55 +17,69 @@ export default function Truck() {
     isAsc: false,
   });
 
-  const [viewId, setViewId] = React.useState({});
-
   const [search, setSearch] = useState("");
 
   const listLimit = useMemo(() => [5, 10, 20], []);
 
   const [type, setType] = useState("");
+  const [viewId, setViewId] = React.useState({});
   const [data, setData] = useState([
     {
-      license_number: "asdasdada",
-      truck_type: "asdasdsadasd",
-      production_year: "asdada",
+      id: 1,
+      driver_name: "asdasdada",
+      phone_number: "asdasdsadasd",
+      created_at: "asdada",
+      status: "Active",
     },
     {
-      license_number: "nasdasdksad",
-      truck_type: "njkljnk",
-      production_year: "kmlnnjlknkl",
+      id: 2,
+      driver_name: "nasdasdksad",
+      phone_number: "njkljnk",
+      created_at: "kmlnnjlknkl",
+      status: "Inactive",
     },
     {
-      license_number: "t787iuda",
-      truck_type: "bnmmv",
-      production_year: "0909",
+      id: 3,
+      driver_name: "t787iuda",
+      phone_number: "bnmmv",
+      created_at: "0909",
+      status: "Active",
     },
     {
-      license_number: "asdasdada",
-      truck_type: "asdasdsadasd",
-      production_year: "asdada",
+      id: 4,
+      driver_name: "asdasdada",
+      phone_number: "asdasdsadasd",
+      created_at: "asdada",
+      status: "Inactive",
     },
     {
-      license_number: "nasdasdksad",
-      truck_type: "njkljnk",
-      production_year: "kmlnnjlknkl",
+      id: 5,
+      driver_name: "nasdasdksad",
+      phone_number: "njkljnk",
+      created_at: "kmlnnjlknkl",
+      status: "Active",
     },
   ]);
   const listHead = useMemo(
     () => [
       {
-        view: "License Number",
-        value: "license_number",
+        view: "Driver Name",
+        value: "driver_name",
         type: "text",
       },
       {
-        view: "Truck Type",
-        value: "truck_type",
+        view: "Phone Number",
+        value: "phone_number",
         type: "text",
       },
       {
-        view: "Production Year",
-        value: "production_year",
+        view: "Created At",
+        value: "created_at",
+        type: "text",
+      },
+      {
+        view: "Status",
+        value: "status",
         type: "text",
       },
     ],
@@ -80,7 +94,7 @@ export default function Truck() {
 
   const handleEdit = useCallback(
     (e) => {
-      setLocation(`/transporter/trucks/form?id=${e}`);
+      setLocation(`/transporter/drivers/form?id=${e}`);
     },
     [setLocation]
   );
@@ -108,24 +122,13 @@ export default function Truck() {
 
   return (
     <div className="min-h-screen w-full pt-20 pb-8 px-6">
-      <p className="font-sans font-semibold text-main-black text-lg">Trucks</p>
+      <p className="font-sans font-semibold text-main-black text-lg">Driver</p>
 
       <div className="mt-4 flex justify-between items-center w-full">
-        <select
-          className="rounded-md px-4 py-3"
-          onChange={(e) => {
-            setType(e.target.value);
-          }}
-        >
-          {["Truck Type", "Tronton", "Container", "CDE"].map((item, i) => (
-            <option key={i} className="p-2 font-sans text-sm" value={item}>
-              {item}
-            </option>
-          ))}
-        </select>
+        <div></div>
         <div className="flex space-x-4 items-center">
           <button className="bg-blue-800 rounded-xl focus:outline-none hover:opacity-80 text-white text-base font-semibold font-sans px-5 py-3">
-            Add Trucks
+            Add Driver
           </button>
           <input
             placeholder="search"

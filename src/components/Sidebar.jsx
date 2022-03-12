@@ -6,6 +6,7 @@ import ActiveLink from "./ActiveLink";
 import logo from "../assets/logo.png";
 import drivers from "../assets/driver.svg";
 import trucks from "../assets/trucks.svg";
+import shipping from "../assets/shipping.svg";
 
 export default function Sidebar() {
   const { auth, isSideOpen, user } = useContext(AppContext);
@@ -15,8 +16,8 @@ export default function Sidebar() {
       return [
         {
           value: "Shippment",
-          href: "/shipper/shippment",
-          img: "#",
+          href: "/shipper/shipments",
+          img: shipping,
         },
       ];
     }
