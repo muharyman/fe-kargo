@@ -127,7 +127,10 @@ export default function Truck() {
       <div className="mt-4 flex justify-between items-center w-full">
         <div></div>
         <div className="flex space-x-4 items-center">
-          <button className="bg-blue-800 rounded-xl focus:outline-none hover:opacity-80 text-white text-base font-semibold font-sans px-5 py-3">
+          <button
+            onClick={() => setLocation("/transporter/drivers/form")}
+            className="bg-blue-800 rounded-xl focus:outline-none hover:opacity-80 text-white text-base font-semibold font-sans px-5 py-3"
+          >
             Add Driver
           </button>
           <input

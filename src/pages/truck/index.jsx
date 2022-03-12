@@ -1,4 +1,10 @@
-import React, { useState, useMemo, useCallback } from "react";
+import React, {
+  useState,
+  useMemo,
+  useCallback,
+  useContext,
+  useEffect,
+} from "react";
 import { useLocation } from "wouter";
 
 import Table from "../../components/Table";
@@ -7,7 +13,10 @@ import editIcon from "../../assets/edit.svg";
 import deleteIcon from "../../assets/delete.svg";
 import viewIcon from "../../assets/viewId.svg";
 
+import AppContext from "../../context/AppContext";
+
 export default function Truck() {
+  const { user } = useContext(AppContext);
   const [location, setLocation] = useLocation();
   const [total, setTotal] = useState(10);
   const [page, setPage] = useState(1);
@@ -16,6 +25,8 @@ export default function Truck() {
     by: "licence_number",
     isAsc: false,
   });
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const [viewId, setViewId] = React.useState({});
 
@@ -26,30 +37,35 @@ export default function Truck() {
   const [type, setType] = useState("");
   const [data, setData] = useState([
     {
+      id: 1,
       license_number: "asdasdada",
       truck_type: "asdasdsadasd",
       plate_type: "Yellow",
       production_year: "asdada",
     },
     {
+      id: 2,
       license_number: "nasdasdksad",
       truck_type: "njkljnk",
       plate_type: "Yellow",
       production_year: "kmlnnjlknkl",
     },
     {
+      id: 3,
       license_number: "t787iuda",
       truck_type: "bnmmv",
       plate_type: "Yellow",
       production_year: "0909",
     },
     {
+      id: 4,
       license_number: "asdasdada",
       truck_type: "asdasdsadasd",
       plate_type: "Yellow",
       production_year: "asdada",
     },
     {
+      id: 5,
       license_number: "nasdasdksad",
       truck_type: "njkljnk",
       plate_type: "Yellow",
@@ -115,6 +131,37 @@ export default function Truck() {
       },
     ];
   }, [handleEdit, handleDelete]);
+
+  const getData = useCallback(
+    async (license, type, limit, page) => {
+      try {
+        setIsLoading(true);
+        let search = `limit=${limit}&page=${page}`;
+        if (license !== "") {
+          search += `&name=${license}`;
+        }
+        if (type !== "" && type !== "Truck Type") {
+          search += `&type=${type}`;
+        }
+
+        console.log({ search });
+      } catch (err) {
+        console.log({ err });
+        setIsLoading(false);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [user]
+  );
+
+  useEffect(() => {
+    if (search.length > 3) {
+      getData(search, type, limit, page);
+    } else {
+      getData(search, type, limit, page);
+    }
+  }, [limit, page, search, type]);
 
   return (
     <div className="min-h-screen w-full pt-20 pb-8 px-6">

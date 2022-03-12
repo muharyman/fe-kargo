@@ -116,7 +116,12 @@ export default function Truck() {
     []
   );
 
-  const handleViewId = useCallback((e) => {}, []);
+  const handleViewId = useCallback(
+    (e) => {
+      setLocation(`/shipper/shipments/form/allocate?id=${e}`);
+    },
+    [setLocation]
+  );
 
   const handleOrder = useCallback((e) => {
     setOrder(e);
@@ -124,7 +129,7 @@ export default function Truck() {
 
   const handleEdit = useCallback(
     (e) => {
-      setLocation(`/transporter/drivers/form?id=${e}`);
+      setLocation(`/shipper/shipments/form?id=${e}`);
     },
     [setLocation]
   );
@@ -159,7 +164,10 @@ export default function Truck() {
       <div className="mt-4 flex justify-between items-center w-full">
         <div></div>
         <div className="flex space-x-4 items-center">
-          <button className="bg-blue-800 rounded-xl focus:outline-none hover:opacity-80 text-white text-base font-semibold font-sans px-5 py-3">
+          <button
+            onClick={() => setLocation("/shipper/shipments/form")}
+            className="bg-blue-800 rounded-xl focus:outline-none hover:opacity-80 text-white text-base font-semibold font-sans px-5 py-3"
+          >
             Add Shipment
           </button>
           <input

@@ -5,21 +5,27 @@ import RadioForm from "../components/RadioForm";
 import AppContext from "../context/AppContext";
 
 export default function Login() {
-  const { setAuth, setUser } = useContext(AppContext);
+  const { setAuth, setUser, setSnack } = useContext(AppContext);
   const [account, setAccount] = useState("");
   const [location, setLocation] = useLocation();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = useCallback(
-    (user) => {
-      if (user.length !== 0) {
-        if (user == "Transporter") {
-          setLocation("/transporter/trucks");
-        } else {
-          setLocation("/shipper/shipments");
+    async (user) => {
+      try {
+        if (user.length !== 0) {
+          if (user == "Transporter") {
+            setLocation("/transporter/trucks");
+          } else {
+            setLocation("/shipper/shipments");
+          }
+          setAuth(true);
+          setUser(user);
+          localStorage.setItem("kargo-token", user);
+          setSnack("Berhasil login", "success");
         }
-        setAuth(true);
-        setUser(user);
-        localStorage.setItem("kargo-token", user);
+      } catch (err) {
+        setSnack("Gambar tidak boleh lebih dari 2MB", "error");
       }
     },
     [setAuth]

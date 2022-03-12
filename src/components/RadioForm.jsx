@@ -12,7 +12,7 @@ export default function RadioForm({ label, values, setUser }) {
             className="flex items-center w-full space-x-3"
           >
             <input type="radio" id={item} name={"login"} value={item} />
-            <label className="px-2 text-sm capitalize" for={item}>
+            <label className="px-2 text-sm capitalize" htmlFor={item}>
               {item}
             </label>
           </li>
