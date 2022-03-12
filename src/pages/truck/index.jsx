@@ -143,8 +143,6 @@ export default function Truck() {
         if (type !== "" && type !== "Truck Type") {
           search += `&type=${type}`;
         }
-
-        console.log({ search });
       } catch (err) {
         console.log({ err });
         setIsLoading(false);

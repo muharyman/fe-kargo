@@ -27,7 +27,6 @@ export default function Form() {
   const handleSubmit = useCallback(
     async (license, plate, type, production, stnk, kir) => {
       try {
-        console.log({ license, plate, type, production });
         setIsLoading(true);
         if (
           license !== "" &&
@@ -69,17 +68,23 @@ export default function Form() {
             license_number: license,
             truck_type: type,
             plate_type: plate,
-            production_year: production,
+            production_year: parseInt(production),
             stnk: finalStnk,
             kir: finalKir,
           };
 
           console.log({ finalData });
 
-          const res = await fetch("/api" + "/trucks", {
-            method: "POST",
-            body: JSON.stringify(finalData),
-          });
+          const res = await fetch(
+            "https://kargo-backend.herokuapp.com/trucks",
+            {
+              method: "POST",
+              body: JSON.stringify(finalData),
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
 
           const response = await res.json();
           if (response.id) {

@@ -34,8 +34,6 @@ export default function Navbar() {
     []
   );
 
-  console.log({ user });
-
   return (
     <div
       className={`${
