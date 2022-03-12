@@ -28,26 +28,31 @@ export default function Truck() {
     {
       license_number: "asdasdada",
       truck_type: "asdasdsadasd",
+      plate_type: "Yellow",
       production_year: "asdada",
     },
     {
       license_number: "nasdasdksad",
       truck_type: "njkljnk",
+      plate_type: "Yellow",
       production_year: "kmlnnjlknkl",
     },
     {
       license_number: "t787iuda",
       truck_type: "bnmmv",
+      plate_type: "Yellow",
       production_year: "0909",
     },
     {
       license_number: "asdasdada",
       truck_type: "asdasdsadasd",
+      plate_type: "Yellow",
       production_year: "asdada",
     },
     {
       license_number: "nasdasdksad",
       truck_type: "njkljnk",
+      plate_type: "Yellow",
       production_year: "kmlnnjlknkl",
     },
   ]);
@@ -61,6 +66,11 @@ export default function Truck() {
       {
         view: "Truck Type",
         value: "truck_type",
+        type: "text",
+      },
+      {
+        view: "Plate Type",
+        value: "plate_type",
         type: "text",
       },
       {
@@ -124,7 +134,10 @@ export default function Truck() {
           ))}
         </select>
         <div className="flex space-x-4 items-center">
-          <button className="bg-blue-800 rounded-xl focus:outline-none hover:opacity-80 text-white text-base font-semibold font-sans px-5 py-3">
+          <button
+            onClick={() => setLocation(`/transporter/trucks/form`)}
+            className="bg-blue-800 rounded-xl focus:outline-none hover:opacity-80 text-white text-base font-semibold font-sans px-5 py-3"
+          >
             Add Trucks
           </button>
           <input

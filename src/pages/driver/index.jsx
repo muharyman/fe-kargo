@@ -122,7 +122,7 @@ export default function Truck() {
 
   return (
     <div className="min-h-screen w-full pt-20 pb-8 px-6">
-      <p className="font-sans font-semibold text-main-black text-lg">Driver</p>
+      <p className="font-sans font-semibold text-black text-lg">Driver</p>
 
       <div className="mt-4 flex justify-between items-center w-full">
         <div></div>

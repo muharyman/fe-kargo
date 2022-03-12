@@ -14,6 +14,7 @@ import ProtectRouteTransporter from "./components/withPrivateRouteTransporter";
 import ProtectRouteShipper from "./components/withPrivateRouteShipper";
 
 import Trucks from "./pages/truck/index";
+import FormTrucks from "./pages/truck/form";
 import Drivers from "./pages/driver/index";
 import Shipments from "./pages/shipment/index";
 
@@ -65,6 +66,10 @@ function App() {
             <ProtectRouteTransporter
               Component={Trucks}
               path={"/transporter/trucks"}
+            />
+            <ProtectRouteTransporter
+              Component={FormTrucks}
+              path={"/transporter/trucks/form"}
             />
             <ProtectRouteTransporter
               Component={Drivers}
